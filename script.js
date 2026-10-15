@@ -361,10 +361,13 @@ document.querySelector('.stage').addEventListener('click', e => {
 }, true);
 
 // สลับโหมดเมื่อหมุนจอ/ย่อขยายหน้าต่าง
-mobile.addEventListener('change', () => {
+const onModeChange = () => {
   if (mobile.matches) goPage(Math.min(lastPage, current * 2));
   else goTo(current, true);
-});
+};
+// Safari รุ่นเก่า (iOS < 14) ไม่มี addEventListener บน MediaQueryList
+if (mobile.addEventListener) mobile.addEventListener('change', onModeChange);
+else mobile.addListener(onModeChange);
 
 goTo(0, true);
 goPage(0);
