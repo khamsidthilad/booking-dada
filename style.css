@@ -225,8 +225,9 @@ body {
   :root { --pw: min(calc(100vw - 40px), calc((100vh - 170px) / 1.4)); }
   body { justify-content: flex-start; padding-top: 14px; }
   .book { display: none; }
-  .stage { perspective: 1400px; padding: 0 0 0 8px; }
-  .mbook { display: block; position: relative; width: var(--pw); height: var(--ph); transform-style: preserve-3d; }
+  .stage { padding: 0 0 0 8px; }
+  /* perspective อยู่ที่ .mbook และไม่ใช้ preserve-3d ที่นี่ เพื่อให้ z-index ของแต่ละใบทำงาน (Safari บน iPhone ไม่สนใจ z-index ใน 3D) */
+  .mbook { display: block; position: relative; width: var(--pw); height: var(--ph); perspective: 1400px; }
   .mbook::before { content: ''; position: absolute; left: -9px; top: -2px; bottom: -2px; width: 12px; border-radius: 6px 0 0 6px; background: linear-gradient(to right, #1d0f08, #6a4129 60%, #3a2216); box-shadow: -2px 4px 12px rgba(0,0,0,.5); }
   .mbook::after { content: ''; position: absolute; right: -4px; top: 6px; bottom: 6px; width: 6px; border-radius: 0 4px 4px 0; background: repeating-linear-gradient(to bottom, #efe3cc 0 2px, #d9c9aa 2px 3px); }
   .leaf { position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d; transition: transform .85s cubic-bezier(.4, .1, .2, 1); cursor: pointer; }
